@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <title>Shopping List</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body id="bg" style="background-image: url('{% static "img/foods.jpg" %}'); background-repeat: no-repeat;
+    background-size: cover">
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+            <a href="#" class="brand-logo">Shopping List</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <h4>Hello {{ user.first_name }} {{ user.last_name }}!</h4>
+                </li>
+                <li><a href="/logout">Log Out</a></li>
+                <li><a href="/myaccount/{{user.id}}">Edit My Account</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="header">
+        <span class="teal-text text-darken-2">
+            <h4>Add an Item</h4>
+        </span>
+        <div id="container">
+            <div class="main">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action='/submit_product' method='post'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <form class="col s5">
+                            <div class="row">
+                                <div class="input-field col s4 #e0f7fa cyan lighten-5
+                                ">
+                                    <input id="product" type="text" name="product_name" class="validate">
+                                    <label for="product_name">Product Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4 #e0f7fa cyan lighten-5
+                                ">
+                                    <input id="description" type="text" name="description" class="validate">
+                                    <label for="description">Description</label>
+                                </div>
+                            </div>
+                            <button class="btn center waves-effect waves-light" type="submit" name="action">Add Product
+                            </button>
+                        </form>
+                        <div class="header">
+                            <span class="teal-text text-darken-2">
+                                <h4>Shopping List</h4>
+                            </span>
+                            <ul class="collection col s8">
+                                {% for product in all_products reversed %}
+                                <li class="collection-item #e0f2f1 teal lighten-5">{{ product.product_name }} -
+                                    {{product.description}} <input type="checkbox" name="" id="">Added by: <a
+                                        href="/user/{{product.user.id}}">{{product.user.first_name}}
+                                        {{product.user.last_name}}</a> |  <a href="/destroy/{{product.id}}">Delete Item</a> 
+                                        <p></p>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Got it</span>
+                                    </label>
+                                </li>
+
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </main>
+    </div>
+</body>
+
+</html>

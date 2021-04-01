@@ -1,0 +1,20 @@
+body{
+    background-image: url("static/img/grocery2.jpeg");
+}
+.header{
+    margin-left: 30px;
+    margin-top: 50px;
+}
+.bottom{
+    margin-left: 30px;
+}
+.brand-logo{
+    margin-left: 30px;
+}
+.main{
+    margin-top: 60px;
+    margin-left: 50px;
+}
+.container{
+    padding-right: 5px;
+}

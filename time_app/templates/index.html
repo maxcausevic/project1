@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <title>Login and/or Register</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+
+
+        <body id="bg" style="background-image: url('{% static "img/grocery2.jpeg" %}'); background-repeat: no-repeat;
+background-size: cover">
+
+        <nav>
+            <div class="nav-wrapper teal lighten-2">
+                <a href="#" class="brand-logo">Shopping List</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">News</a></li>
+                    <li><a href="badges.html">Home</a></li>
+                    <li><a href="collapsible.html">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="header">
+            <span class="teal-text text-darken-2">
+                <h4>Registration</h4>
+            </span>
+        </div>
+        <div class="container">
+
+
+            <form action='/register' method='post'>
+                {% csrf_token %}
+                <form class="col s5">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="first_name" type="text" name ="first_name" class="validate">
+                            <label for="first_name">First Name</label>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == 'first_name' %}
+                            <p class="{{ message.tags }}">{{ message }}</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="last_name" type="text" name ="last_name" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'last_name' %}
+                        <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="email" type="email" name ="reg_email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'reg_email' %}
+                        <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="password" type="password" name ="reg_password"class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'reg_password' %}
+                        <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input id="confirm_pw" type="password" name ="confirm_pw"class="validate">
+                            <label for="confirm_pw">confirm password</label>
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'confirm_pw' %}
+                        <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <button class="btn center waves-effect waves-light" type="submit" name="action">Submit
+                    </button>
+                </form>
+
+            </form>
+
+        </div>
+        <div class="bottom">
+            <span class="teal-text text-darken-2">
+                <h4>Login</h4>
+            </span>
+        </div>
+        <div class="container">
+            <form action='/login' method='post'>
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="log_email" type="email" name='log_email'>
+                        <label for="log_email">Email</label>
+                    </div>
+                </div>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.extra_tags == 'log_email' %}
+                <p class="{{ message.tags }}">{{ message }}</p>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="log_password" type="password" name='log_password'>
+                        <label for="log_password">Password</label>
+                    </div>
+                </div>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.extra_tags == 'log_password' %}
+                <p class="{{ message.tags }}">{{ message }}</p>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <button class="btn center waves-effect waves-light" type="submit" name="action">Submit
+                </button>
+            </form>
+        </div>
+
+
+</body>
+
+</html>

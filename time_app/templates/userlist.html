@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Document</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+    <body id="bg" style="background-image: url('{% static "img/grocery3.jpeg" %}'); background-repeat: no-repeat;
+    background-size: cover">
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+            <a href="#" class="brand-logo">Shopping List</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                </li>
+                <li><a href="/logout">Log Out</a></li>
+                <li><a href="/shoppinglist">Back</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+    <div class="row right teal-text text-darken-2">
+    <h3>All of {{right_user.first_name}} {{right_user.last_name}}'s Items:</h3>
+    <ul class="collection col s8">
+        {% for product in user_products reversed %}
+        <li class="collection-item #e0f2f1 teal lighten-5">{{ product.product_name }} -"{{product.description}}" | <a href="/remove/{{product.id}}/{{right_user.id}}">Delete Item</a></li>
+        {% endfor %}
+    </ul>
+    </div>
+    </div>
+</body>
+
+</html>
