@@ -68,12 +68,12 @@
                             <ul class="collection col s8">
                                 {% for product in all_products reversed %}
                                 <li class="collection-item #e0f2f1 teal lighten-5">{{ product.product_name }} -
-                                    {{product.description}} <input type="checkbox" name="" id="">Added by: <a
+                                    {{product.description}} <input type="checkbox"name="" id="">Added by: <a
                                         href="/user/{{product.user.id}}">{{product.user.first_name}}
                                         {{product.user.last_name}}</a> |  <a href="/destroy/{{product.id}}">Delete Item</a> 
                                         <p></p>
                                     <label>
-                                        <input type="checkbox" />
+                                        <input type="checkbox" autocomplete="off"/>
                                         <span>Got it</span>
                                     </label>
                                 </li>
